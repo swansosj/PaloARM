@@ -354,17 +354,17 @@
             "name": "[variables('nic2Name')]",
             "type": "Microsoft.Network/networkInterfaces",
             "apiVersion": "2017-10-01",
-            "location": "[resourceGroup().location]",
             "dependsOn": [
                 "[resourceId('Microsoft.Network/virtualNetworks', variables('virtualNetworkName'))]"
             ],
+            "location": "[resourceGroup().location]",
             "properties": {
+                "enableIPForwarding": true,
+                "enableAcceleratedNetworking": "[if(equals(parameters('imageVersion'), '8.1.9'), 'false', 'true')]",
                 "ipConfigurations": [
                     {
-                        "name": "ipConfig1",
+                        "name": "ipconfig-trust",
                         "properties": {
-                            "enableIPForwarding": true,
-                            "enableAcceleratedNetworking": "[if(equals(parameters('imageVersion'), '8.1.9'), 'false', 'true')]",
                             "privateIPAllocationMethod": "Dynamic",
                             "subnet": {
                                 "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', variables('virtualNetworkName'), variables('subnet2Name'))]"
