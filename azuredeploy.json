@@ -384,9 +384,9 @@
                 "[resourceId('Microsoft.Network/publicIPAddresses', variables('publicIPName2'))]",
                 "[resourceId('Microsoft.Network/virtualNetworks', variables('virtualNetworkName'))]",
                 "[resourceId('Microsoft.Network/networkSecurityGroups', variables('nsgName'))]",
-                "[concat(variables('nic0Name'), '0')]",
-                "[concat(variables('nic1Name'), '1')]",
-                "[concat(variables('nic2Name'), '2')]"
+                "[resourceId('Microsoft.Network/networkInterfaces', variables('nic0Name'))]",
+                "[resourceId('Microsoft.Network/networkInterfaces', variables('nic1Name'))]",
+                "[resourceId('Microsoft.Network/networkInterfaces', variables('nic2Name'))]"
             ],
             "plan": {
                 "name": "[parameters('imageSku')]",
