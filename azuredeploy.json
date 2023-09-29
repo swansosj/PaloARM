@@ -310,7 +310,7 @@
                     {
                         "name": "ipConfig1",
                         "properties": {
-                            "privateIPAllocationMethod": "Static",
+                            "privateIPAllocationMethod": "Dynamic",
                             "publicIPAddress": {
                                 "id": "[resourceId('Microsoft.Network/publicIPAddresses', variables('publicIPName1'))]"
                             },
@@ -338,7 +338,7 @@
                         "properties": {
                             "enableIPForwarding": true,
                             "enableAcceleratedNetworking": "[if(equals(parameters('imageVersion'), '8.1.9'), 'false', 'true')]",
-                            "privateIPAllocationMethod": "Static",
+                            "privateIPAllocationMethod": "Dynamic",
                             "publicIPAddress": {
                                 "id": "[resourceId('Microsoft.Network/publicIPAddresses', variables('publicIPName2'))]"
                             },
@@ -365,7 +365,7 @@
                         "properties": {
                             "enableIPForwarding": true,
                             "enableAcceleratedNetworking": "[if(equals(parameters('imageVersion'), '8.1.9'), 'false', 'true')]",
-                            "privateIPAllocationMethod": "Static",
+                            "privateIPAllocationMethod": "Dynamic",
                             "subnet": {
                                 "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', variables('virtualNetworkName'), variables('subnet2Name'))]"
                             }
