@@ -29,28 +29,28 @@
             }
         },
         "virtualNetworkAddressPrefixes": {
-            "defaultValue": "[array('192.168.0.0/16')]",
-            "type": "Array",
+            "defaultValue": "10.0.0.0/16",
+            "type": "string",
             "metadata": {
-                "description": "Virtual network address CIDR"
+                "description": "Virtual Network Address CIDR"
             }
         },
         "subnet0Prefix": {
-            "defaultValue": "192.168.0.0/24",
+            "defaultValue": "10.0.0.0/24",
             "type": "String",
             "metadata": {
                 "description": "Mgmt subnet CIDR"
             }
         },
         "subnet1Prefix": {
-            "defaultValue": "192.168.1.0/24",
+            "defaultValue": "10.0.1.0/24",
             "type": "String",
             "metadata": {
                 "description": "Outside subnet CIDR"
             }
         },
         "subnet2Prefix": {
-            "defaultValue": "192.168.2.0/24",
+            "defaultValue": "10.0.2.0/24",
             "type": "String",
             "metadata": {
                 "description": "Inside subnet CIDR"
@@ -151,7 +151,7 @@
         "publicIPName1": "[concat(parameters('customerName'), '-pip-fw-mgmt-', parameters('environment'), '-', parameters('location'),'-000' )]",
         "publicIPName2": "[concat(parameters('customerName'), '-pip-fw-outside-', parameters('environment'), '-', parameters('location'),'-000' )]",
         "nsgName": "[concat(parameters('customerName'), '-nsg-default-', parameters('environment'), '-', parameters('location'), '-000')]",
-        "virtualNetworkAddressPrefix": "[parameters('virtualNetworkAddressPrefixes')[0]]",
+        "virtualNetworkAddressPrefix": "[parameters('virtualNetworkAddressPrefixes')]",
         "virtualNetworkName": "[concat(parameters('customerName'), '-vnet-transit-', parameters('environment'), '-', parameters('location'), '-000')]",
         "subnet0Name": "[concat(parameters('customerName'), '-snet-mgmt-', parameters('environment'), '-', parameters('location'), '-000')]",
         "subnet1Name": "[concat(parameters('customerName'), '-snet-outside-', parameters('environment'), '-', parameters('location'), '-000')]",
@@ -425,19 +425,19 @@
                 "networkProfile": {
                     "networkInterfaces": [
                         {
-                            "id": "[resourceId('Microsoft.Network/networkInterfaces', concat(variables('nic0Name'),'0'))]",
+                            "id": "[resourceId('Microsoft.Network/networkInterfaces', concat(variables('nic0Name')))]",
                             "properties": {
                                 "primary": true
                             }
                         },
                         {
-                            "id": "[resourceId('Microsoft.Network/networkInterfaces', concat(variables('nic1Name'),'1'))]",
+                            "id": "[resourceId('Microsoft.Network/networkInterfaces', concat(variables('nic1Name')))]",
                             "properties": {
                                 "primary": false
                             }
                         },
                         {
-                            "id": "[resourceId('Microsoft.Network/networkInterfaces', concat(variables('nic2Name'),'2'))]",
+                            "id": "[resourceId('Microsoft.Network/networkInterfaces', concat(variables('nic2Name')))]",
                             "properties": {
                                 "primary": false
                             }
