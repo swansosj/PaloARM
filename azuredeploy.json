@@ -14,13 +14,6 @@
                 "description": "Customers Environment"
             }
         },
-        "location": {
-            "defaultValue": "[resourceGroup().location]",
-            "type": "string",
-            "metadata": {
-                "description": "description"
-            }
-        },
         "srcIPInboundNSG": {
             "defaultValue": "0.0.0.0/0",
             "type": "String",
@@ -148,18 +141,18 @@
     "variables": {
         "imagePublisher": "paloaltonetworks",
         "imageOffer": "vmseries-flex",
-        "publicIPName1": "[concat(parameters('customerName'), '-pip-fw-mgmt-', parameters('environment'), '-', parameters('location'),'-000' )]",
-        "publicIPName2": "[concat(parameters('customerName'), '-pip-fw-outside-', parameters('environment'), '-', parameters('location'),'-000' )]",
-        "nsgName": "[concat(parameters('customerName'), '-nsg-default-', parameters('environment'), '-', parameters('location'), '-000')]",
+        "publicIPName1": "[concat(parameters('customerName'), '-pip-fw-mgmt-', parameters('environment'), '-', resourceGroup().location,'-000' )]",
+        "publicIPName2": "[concat(parameters('customerName'), '-pip-fw-outside-', parameters('environment'), '-', resourceGroup().location,'-000' )]",
+        "nsgName": "[concat(parameters('customerName'), '-nsg-default-', parameters('environment'), '-', resourceGroup().location, '-000')]",
         "virtualNetworkAddressPrefix": "[parameters('virtualNetworkAddressPrefixes')]",
-        "virtualNetworkName": "[concat(parameters('customerName'), '-vnet-transit-', parameters('environment'), '-', parameters('location'), '-000')]",
-        "subnet0Name": "[concat(parameters('customerName'), '-snet-mgmt-', parameters('environment'), '-', parameters('location'), '-000')]",
-        "subnet1Name": "[concat(parameters('customerName'), '-snet-outside-', parameters('environment'), '-', parameters('location'), '-000')]",
-        "subnet2Name": "[concat(parameters('customerName'), '-snet-inside-', parameters('environment'), '-', parameters('location'), '-000')]",
-        "nic0Name": "[concat(parameters('customerName'), '-nic-fw-mgmt-', parameters('environment'), '-', parameters('location'), '-000')]",
-        "nic1Name": "[concat(parameters('customerName'), '-nic-fw-outside-', parameters('environment'), '-', parameters('location'), '-000')]",
-        "nic2Name": "[concat(parameters('customerName'), '-nic-fw-inside-', parameters('environment'), '-', parameters('location'), '-000')]",
-        "vmName": "[concat(parameters('customerName'), '-fw-palo-', parameters('environment'), '-', parameters('location'), '-000')]",
+        "virtualNetworkName": "[concat(parameters('customerName'), '-vnet-transit-', parameters('environment'), '-', resourceGroup().location, '-000')]",
+        "subnet0Name": "[concat(parameters('customerName'), '-snet-mgmt-', parameters('environment'), '-', resourceGroup().location, '-000')]",
+        "subnet1Name": "[concat(parameters('customerName'), '-snet-outside-', parameters('environment'), '-', resourceGroup().location, '-000')]",
+        "subnet2Name": "[concat(parameters('customerName'), '-snet-inside-', parameters('environment'), '-', resourceGroup().location, '-000')]",
+        "nic0Name": "[concat(parameters('customerName'), '-nic-fw-mgmt-', parameters('environment'), '-', resourceGroup().location, '-000')]",
+        "nic1Name": "[concat(parameters('customerName'), '-nic-fw-outside-', parameters('environment'), '-', resourceGroup().location, '-000')]",
+        "nic2Name": "[concat(parameters('customerName'), '-nic-fw-inside-', parameters('environment'), '-', resourceGroup().location, '-000')]",
+        "vmName": "[concat(parameters('customerName'), '-fw-palo-', parameters('environment'), '-', resourceGroup().location, '-000')]",
         "linuxConfiguration": {
             "disablePasswordAuthentication": true,
             "ssh": {
@@ -177,7 +170,7 @@
             "name": "[variables('publicIPName1')]",
             "type": "Microsoft.Network/publicIPAddresses",
             "apiVersion": "2020-08-01",
-            "location": "[parameters('location')]",
+            "location": "[resourceGroup().location]",
             "sku": {
                 "name": "Standard"
             },
@@ -198,7 +191,7 @@
             "name": "[variables('publicIPName2')]",
             "type": "Microsoft.Network/publicIPAddresses",
             "apiVersion": "2020-08-01",
-            "location": "[parameters('location')]",
+            "location": "[resourceGroup().location]",
             "sku": {
                 "name": "Standard"
             },
@@ -219,7 +212,7 @@
             "name": "[variables('nsgName')]",
             "type": "Microsoft.Network/networkSecurityGroups",
             "apiVersion": "2023-04-01",
-            "location": "[parameters('location')]",
+            "location": "[resourceGroup().location]",
             "properties": {
                 "securityRules": [
                     {
@@ -271,7 +264,7 @@
             "name": "[variables('virtualNetworkName')]",
             "type": "Microsoft.Network/virtualNetworks",
             "apiVersion": "2023-04-01",
-            "location": "[parameters('location')]",
+            "location": "[resourceGroup().location]",
             "dependsOn": [
                 "[resourceId('Microsoft.Network/networkSecurityGroups', variables('nsgName'))]"
             ],
@@ -307,7 +300,7 @@
             "name": "[variables('nic0Name')]",
             "type": "Microsoft.Network/networkInterfaces",
             "apiVersion": "2023-04-01",
-            "location": "[parameters('location')]",
+            "location": "[resourceGroup().location]",
             "dependsOn": [
                 "[resourceId('Microsoft.Network/publicIPAddresses', variables('publicIPName1'))]",
                 "[resourceId('Microsoft.Network/virtualNetworks', variables('virtualNetworkName'))]"
@@ -333,7 +326,7 @@
             "name": "[variables('nic1Name')]",
             "type": "Microsoft.Network/networkInterfaces",
             "apiVersion": "2023-04-01",
-            "location": "[parameters('location')]",
+            "location": "[resourceGroup().location]",
             "dependsOn": [
                 "[resourceId('Microsoft.Network/publicIPAddresses', variables('publicIPName2'))]",
                 "[resourceId('Microsoft.Network/virtualNetworks', variables('virtualNetworkName'))]"
@@ -361,7 +354,7 @@
             "name": "[variables('nic2Name')]",
             "type": "Microsoft.Network/networkInterfaces",
             "apiVersion": "2023-04-01",
-            "location": "[parameters('location')]",
+            "location": "[resourceGroup().location]",
             "dependsOn": [
                 "[resourceId('Microsoft.Network/virtualNetworks', variables('virtualNetworkName'))]"
             ],
@@ -385,7 +378,7 @@
             "type": "Microsoft.Compute/virtualMachines",
             "apiVersion": "2018-06-01",
             "name": "[variables('vmName')]",
-            "location": "[parameters('location')]",
+            "location": "[resourceGroup().location]",
             "dependsOn": [
                 "[resourceId('Microsoft.Network/publicIPAddresses', variables('publicIPName1'))]",
                 "[resourceId('Microsoft.Network/publicIPAddresses', variables('publicIPName2'))]",

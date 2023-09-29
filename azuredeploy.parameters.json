@@ -8,9 +8,6 @@
         "environment": {
             "value": "## TO BE DEFINED ##"
         },
-        "location": {
-            "value": "## TO BE DEFINED ##"
-        },
         "srcIPInboundNSG": {
             "value": "0.0.0.0/0"
         },
