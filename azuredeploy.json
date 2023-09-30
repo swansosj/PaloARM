@@ -278,13 +278,42 @@
         {
             "name": "[variables('publicIPAddress0Name')]",
             "type": "Microsoft.Network/publicIPAddresses",
-            "apiVersion": "2017-10-01",
-            "condition": "[equals(parameters('publicIPNewOrExisting'), 'new')]",
+            "apiVersion": "2020-08-01",
             "location": "[resourceGroup().location]",
+            "sku": {
+                "name": "Standard"
+            },
+            "zones": [
+                "1",
+                "2",
+                "3"
+            ],
             "properties": {
-                "publicIPAllocationMethod": "[parameters('publicIPAllocationMethod')]",
+                "publicIPAllocationMethod": "Static",
+                "publicIPAddressVersion": "IPv4",
                 "dnsSettings": {
                     "domainNameLabel": "[variables('publicIPAddress0Name')]"
+                }
+            }
+        },
+        {
+            "name": "[variables('publicIPAddress1Name')]",
+            "type": "Microsoft.Network/publicIPAddresses",
+            "apiVersion": "2020-08-01",
+            "location": "[resourceGroup().location]",
+            "sku": {
+                "name": "Standard"
+            },
+            "zones": [
+                "1",
+                "2",
+                "3"
+            ],
+            "properties": {
+                "publicIPAllocationMethod": "Static",
+                "publicIPAddressVersion": "IPv4",
+                "dnsSettings": {
+                    "domainNameLabel": "[variables('publicIPAddress1Name')]"
                 }
             }
         },
@@ -394,7 +423,10 @@
                             }
                         }
                     }
-                ]
+                ],
+                "networkSecurityGroup": {
+                    "id": "[resourceId('Microsoft.Network/networkSecurityGroups', variables('nsgName'))]"
+                }
             }
         },
         {
