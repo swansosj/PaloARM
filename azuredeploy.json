@@ -208,6 +208,7 @@
         "imagePublisher": "paloaltonetworks",
         "imageSku": "byol",
         "imageOffer": "vmseries-flex",
+        "customData": "configure\nset network virtual-router Azure\nset zone Outside\nset network interface ethernet ethernet1/1 link-state up\nset network interface ethernet ethernet1/1 layer3\nset network interface ethernet ethernet1/1 layer3 dhcp-client\nset zone Outside network layer3 ethernet1/1\ncommit\n",
         "nsgName": "[concat(parameters('customerName'),'-nsg-default-prod-', resourceGroup().location,'-000')]",
         "vmName": "[concat(parameters('customerName'),'-fw-palo-prod-',resourceGroup().location,'-000')]",
         "nic0Name": "[concat(parameters('customerName'),'-nic-fw-mgmt-prod-',resourceGroup().location,'-000')]",
@@ -515,7 +516,7 @@
                     "adminUsername": "[parameters('adminUsername')]",
                     "adminPassword": "[parameters('adminPasswordOrKey')]",
                     "linuxConfiguration": "[if(equals(parameters('authenticationType'), 'password'), json('null'), variables('linuxConfiguration'))]",
-                    "customData": "[if(equals(parameters('bootstrap'), 'no'), json('null'), base64(parameters('customData')))]"
+                    "customData": "[if(equals(parameters('bootstrap'), 'no'), json('null'), base64(variables('customData')))]"
                 },
                 "storageProfile": {
                     "imageReference": {
