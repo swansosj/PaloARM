@@ -1,0 +1,98 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "location": {
+            "value": "## TO BE DEFINED ##"
+        },
+        "srcIPInboundNSG": {
+            "value": "0.0.0.0/0"
+        },
+        "customData": {
+            "value": "echo customData"
+        },
+        "vmName": {
+            "value": "VM-Series"
+        },
+        "imageVersion": {
+            "value": "latest"
+        },
+        "vmSize": {
+            "value": "Standard_D3_v2"
+        },
+        "virtualNetworkName": {
+            "value": "fwVNET"
+        },
+        "vnetNewOrExisting": {
+            "value": "new"
+        },
+        "virtualNetworkAddressPrefixes": {
+            "value": [
+                "## TO BE DEFINED ##"
+            ]
+        },
+        "virtualNetworkExistingRGName": {
+            "value": ""
+        },
+        "subnet0Name": {
+            "value": "Mgmt"
+        },
+        "subnet1Name": {
+            "value": "Untrust"
+        },
+        "subnet2Name": {
+            "value": "Trust"
+        },
+        "subnet0Prefix": {
+            "value": "192.168.0.0/24"
+        },
+        "subnet1Prefix": {
+            "value": "192.168.1.0/24"
+        },
+        "subnet2Prefix": {
+            "value": "192.168.2.0/24"
+        },
+        "subnet1StartAddress": {
+            "value": "192.168.1.4"
+        },
+        "subnet2StartAddress": {
+            "value": "192.168.2.4"
+        },
+        "authenticationType": {
+            "value": "password"
+        },
+        "adminUsername": {
+            "value": "## TO BE DEFINED ##"
+        },
+        "adminPasswordOrKey": {
+            "value": "## TO BE DEFINED ##"
+        },
+        "publicIPNewOrExisting": {
+            "value": "new"
+        },
+        "publicIPAddressName": {
+            "value": "## TO BE DEFINED ##"
+        },
+        "publicIPRGName": {
+            "value": "None"
+        },
+        "publicIPAllocationMethod": {
+            "value": "Dynamic"
+        },
+        "bootstrap": {
+            "value": "no"
+        },
+        "zone": {
+            "value": "None"
+        },
+        "availabilitySetName": {
+            "value": "None"
+        },
+        "availabilitySetPlatformFaultDomainCount": {
+            "value": "2"
+        },
+        "availabilitySetPlatformUpdateDomainCount": {
+            "value": "5"
+        }
+    }
+}
