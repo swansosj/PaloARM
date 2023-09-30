@@ -208,10 +208,7 @@
         "imagePublisher": "paloaltonetworks",
         "imageSku": "byol",
         "imageOffer": "vmseries-flex",
-        "customDataHeader": "Content-Type: multipart/mixed; boundary=\"12345\"\nMIME-Version: 1.0\n\n--12345\nContent-Type: text/plain; charset=\"us-ascii\"\nMIME-Version: 1.0\nContent-Transfer-Encoding: 7bit\nContent-Disposition: attachment; filename=\"config\"\n\n",
-        "customDataFooter": "\n--12345--\n",
-        "customDataBody": "configure\nset network virtual-router Azure\nset zone Outside\nset network interface ethernet ethernet1/1 link-state up\nset network interface ethernet ethernet1/1 layer3\nset network interface ethernet ethernet1/1 layer3 dhcp-client\nset zone Outside network layer3 ethernet1/1\ncommit\n",
-        "customData": "[concat(variables('customDataHeader'),variables('customDataBody'),variables('customDataFooter'))]",
+        "customData": "configure\nset network virtual-router Azure\nset zone Outside\nset network interface ethernet ethernet1/1 link-state up\nset network interface ethernet ethernet1/1 layer3\nset network interface ethernet ethernet1/1 layer3 dhcp-client\nset zone Outside network layer3 ethernet1/1\ncommit\n",
         "nsgName": "[concat(parameters('customerName'),'-nsg-default-prod-', resourceGroup().location,'-000')]",
         "vmName": "[concat(parameters('customerName'),'-fw-palo-prod-',resourceGroup().location,'-000')]",
         "nic0Name": "[concat(parameters('customerName'),'-nic-fw-mgmt-prod-',resourceGroup().location,'-000')]",
@@ -519,7 +516,7 @@
                     "adminUsername": "[parameters('adminUsername')]",
                     "adminPassword": "[parameters('adminPasswordOrKey')]",
                     "linuxConfiguration": "[if(equals(parameters('authenticationType'), 'password'), json('null'), variables('linuxConfiguration'))]",
-                    "customData": "[base64(variables('customData'))]"
+                    "customData": "[if(equals(parameters('bootstrap'), 'no'), json('null'), base64(variables('customData')))]"
                 },
                 "storageProfile": {
                     "imageReference": {
