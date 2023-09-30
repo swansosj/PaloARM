@@ -2,7 +2,7 @@
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "location": {
+        "customerName": {
             "value": "## TO BE DEFINED ##"
         },
         "srcIPInboundNSG": {
@@ -11,35 +11,20 @@
         "customData": {
             "value": "echo customData"
         },
-        "vmName": {
-            "value": "VM-Series"
-        },
         "imageVersion": {
             "value": "latest"
         },
         "vmSize": {
             "value": "Standard_D3_v2"
         },
-        "virtualNetworkName": {
-            "value": "fwVNET"
-        },
         "vnetNewOrExisting": {
             "value": "new"
         },
-        "virtualNetworkAddressPrefixes": {
+        "virtualNetworkAddressPrefix": {
             "value": "10.0.0.0/16"
         },
         "virtualNetworkExistingRGName": {
             "value": ""
-        },
-        "subnet0Name": {
-            "value": "Mgmt"
-        },
-        "subnet1Name": {
-            "value": "Untrust"
-        },
-        "subnet2Name": {
-            "value": "Trust"
         },
         "subnet0Prefix": {
             "value": "10.0.0.0/24"
@@ -67,9 +52,6 @@
         },
         "publicIPNewOrExisting": {
             "value": "new"
-        },
-        "publicIPAddressName": {
-            "value": "## TO BE DEFINED ##"
         },
         "publicIPRGName": {
             "value": "None"
