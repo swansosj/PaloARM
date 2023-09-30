@@ -4,6 +4,8 @@
 
 ## Introduction
 
+This template is for a Standalone Palo Alto with a Public IP on the External Interface for VPN Termination on the firewall.
+
 ## Design
 
 ## Deployment
