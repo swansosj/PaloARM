@@ -318,19 +318,6 @@
             }
         },
         {
-            "name": "[variables('publicIPAddress1Name')]",
-            "type": "Microsoft.Network/publicIPAddresses",
-            "apiVersion": "2017-10-01",
-            "condition": "[equals(parameters('publicIPNewOrExisting'), 'new')]",
-            "location": "[resourceGroup().location]",
-            "properties": {
-                "publicIPAllocationMethod": "[parameters('publicIPAllocationMethod')]",
-                "dnsSettings": {
-                    "domainNameLabel": "[variables('publicIPAddress1Name')]"
-                }
-            }
-        },
-        {
             "name": "[variables('nsgName')]",
             "type": "Microsoft.Network/networkSecurityGroups",
             "apiVersion": "2017-10-01",
