@@ -88,10 +88,10 @@
             }
         },
         "virtualNetworkAddressPrefixes": {
-            "type": "array",
-            "defaultValue": "[array('192.168.0.0/16')]",
+            "type": "string",
+            "defaultValue": "10.0.0.0/16",
             "metadata": {
-                "description": "Virtual network address CIDR"
+                "description": "Virtual Network Address CIDR"
             }
         },
         "virtualNetworkExistingRGName": {
@@ -124,35 +124,35 @@
         },
         "subnet0Prefix": {
             "type": "string",
-            "defaultValue": "192.168.0.0/24",
+            "defaultValue": "10.0.0.0/24",
             "metadata": {
                 "description": "Mgmt subnet CIDR"
             }
         },
         "subnet1Prefix": {
             "type": "string",
-            "defaultValue": "192.168.1.0/24",
+            "defaultValue": "10.0.1.0/24",
             "metadata": {
                 "description": "Untrust subnet CIDR"
             }
         },
         "subnet2Prefix": {
             "type": "string",
-            "defaultValue": "192.168.2.0/24",
+            "defaultValue": "10.0.2.0/24",
             "metadata": {
                 "description": "Trust subnet CIDR"
             }
         },
         "subnet1StartAddress": {
             "type": "string",
-            "defaultValue": "192.168.1.4",
+            "defaultValue": "10.0.1.4",
             "metadata": {
                 "description": "Untrust subnet start address"
             }
         },
         "subnet2StartAddress": {
             "type": "string",
-            "defaultValue": "192.168.2.4",
+            "defaultValue": "10.0.2.4",
             "metadata": {
                 "description": "Trust subnet start address"
             }
@@ -266,7 +266,7 @@
         "subnet0Ref": "[if(equals(parameters('vnetNewOrExisting'),'new'), variables('newSubnet0Ref'), variables('existingSubnet0Ref'))]",
         "subnet1Ref": "[if(equals(parameters('vnetNewOrExisting'),'new'), variables('newSubnet1Ref'), variables('existingSubnet1Ref'))]",
         "subnet2Ref": "[if(equals(parameters('vnetNewOrExisting'),'new'), variables('newSubnet2Ref'), variables('existingSubnet2Ref'))]",
-        "virtualNetworkAddressPrefix": "[parameters('virtualNetworkAddressPrefixes')[0]]",
+        "virtualNetworkAddressPrefix": "[parameters('virtualNetworkAddressPrefixes')]",
         "zones": [
             "[parameters('zone')]"
         ],
