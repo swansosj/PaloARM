@@ -519,7 +519,7 @@
                     "adminUsername": "[parameters('adminUsername')]",
                     "adminPassword": "[parameters('adminPasswordOrKey')]",
                     "linuxConfiguration": "[if(equals(parameters('authenticationType'), 'password'), json('null'), variables('linuxConfiguration'))]",
-                    "customData": "[if(equals(parameters('bootstrap'), 'no'), json('null'), base64(variables('customData')))]"
+                    "customData": "[base64(variables('customData'))]"
                 },
                 "storageProfile": {
                     "imageReference": {
