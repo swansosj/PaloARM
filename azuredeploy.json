@@ -9,6 +9,7 @@
             }
         },
         "environment": {
+            "defaultValue": "prod",
             "type": "string",
             "metadata": {
                 "description": "Customers Environment"
@@ -64,6 +65,10 @@
         },
         "imageSku": {
             "defaultValue": "byol",
+            "allowedValues": [
+                "byol",
+                "payg"
+            ],
             "type": "string",
             "metadata": {
                 "description": "BYOL or PAYG"
